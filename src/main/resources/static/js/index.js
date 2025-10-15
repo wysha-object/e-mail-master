@@ -1,7 +1,7 @@
 let current_folder_id;
 
 function select_folder(address, folder){
-    if (current_folder_id != null) document.getElementById(current_folder_id).classList.remove("current_folder")
+    if (current_folder_id != null) document.getElementById(current_folder_id).classList.remove("current_item")
     current_folder_id = folder
     document.getElementById(folder).classList.add("current_item")
 
