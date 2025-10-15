@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset = "UTF-8">
+    <title>home</title>
+    <link type="text/css" rel="stylesheet" th:href="@{css/global/global.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{css/index.css}">
+    <script th:src="@{js/index.js}"></script>
+</head>
+<body>
+    <header th:replace = "~{global/header.html}"></header>
+    <main>
+        <div id="view">
+            <div id="allMailbox">
+                <div class="mailbox" th:each="o : ${allMailboxView}">
+                    <div class="mailbox_name" th:text="${o.address}"></div>
+                    <div id="error_list" th:if="${!o.errors.isEmpty()}" class="list">
+                        <div class="item" th:each="e : ${o.errors}" th:text="${e}"></div>
+                        <form method="post">
+                            <input type="hidden" name="address" th:value="${o.address}">
+                            <button type="submit" class="item">确定</button>
+                        </form>
+                    </div>
+                    <div id="option" class="list">
+                        <form method="post" th:action="@{/delete}">
+                            <input type="hidden" name="address" th:value="${o.address}">
+                            <button type="submit" class="item">删除邮箱</button>
+                        </form>
+                        <form method="post" th:action="@{/sync}">
+                            <input type="hidden" name="address" th:value="${o.address}">
+                            <button type="submit" class="item">重新同步邮箱</button>
+                        </form>
+                        <form method="post" th:action="@{/initial}">
+                            <input type="hidden" name="address" th:value="${o.address}">
+                            <button type="submit" class="item">重新初始化邮箱</button>
+                        </form>
+                    </div>
+                    <div id="folders" class="list">
+                        <div th:id="${folder}"
+                           class="item"
+                           th:each="folder : ${o.folders}"
+                           th:onclick="select_folder([[${o.address}]], [[${folder}]])"
+                           th:text="${folder}"
+                        ></div>
+                    </div>
+                </div>
+                <div th:if="${allMailboxView == null || allMailboxView.isEmpty()}">
+                    没有找到任何电子邮箱
+                </div>
+            </div>
+            <div id="mail">
+                <iframe id="frame"></iframe>
+            </div>
+        </div>
+    </main>
+    <footer th:replace = "~{global/footer.html}"></footer>
+</body>
+</html>

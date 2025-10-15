@@ -1,0 +1,81 @@
+#mailbox_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 128px);
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    width: 1024px;
+    height: 64px;
+    margin: 16px 0;
+}
+
+.error, .in{
+    width: 100%;
+    height: 50%;
+}
+
+.error {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    color: #ff7777;
+}
+
+.error div {
+    flex: 1;
+}
+
+.in {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.in span {
+    flex: 2;
+}
+
+.in label {
+    flex: 3;
+    padding: 0 16px;
+}
+
+.in label input {
+    height: 32px;
+    width: 100%;
+}
+
+#mailbox_submit {
+    font-size: 20px;
+    width: 50%;
+    height: 50%;
+}
+
+#notice_view {
+    visibility: hidden;
+    position: fixed;
+    left: calc(50vw - 256px);
+    top: calc(50vh - 128px);
+    width: 512px;
+    height: 256px;
+}
+
+#notice {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: #e7e7e7;
+    border-width: 1px;
+    border-color: #030303;
+    border-style: solid;
+    justify-content: center;
+    align-items: center;
+}

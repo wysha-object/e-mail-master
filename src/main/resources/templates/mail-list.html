@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset = "UTF-8">
+    <title>home</title>
+    <link type="text/css" rel="stylesheet" th:href="@{css/global/global.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{css/mail-list.css}">
+    <script th:src="@{js/mail-list.js}"></script>
+</head>
+<body>
+    <div id="view">
+        <div id="allMail">
+            <div th:id="${o.id}" class="mail" th:each="o : ${allMailView}" th:onclick="select_mail([[${o.id}]])">
+                <div class="mail_from" th:text="${o.fromOverview}"></div>
+                <div class="mail_subject" th:text="${o.subject}"></div>
+                <div class="mail_text" th:text="${o.overview}"></div>
+            </div>
+            <div th:if="${allMailView.isEmpty()}">
+                没有找到任何电子邮件
+            </div>
+        </div>
+        <div id="details">
+            <iframe id="frame"></iframe>
+        </div>
+    </div>
+</body>
+</html>

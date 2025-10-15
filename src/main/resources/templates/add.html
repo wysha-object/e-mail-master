@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset = "UTF-8">
+    <title>add</title>
+    <link type="text/css" rel="stylesheet" th:href="@{css/global/global.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{css/add.css}">
+    <script th:src="@{js/add.js}"></script>
+</head>
+<body>
+    <div id="notice_view">
+        <div id="notice">正在验证邮箱并收取已有邮件,请不要关闭客户端</div>
+    </div>
+    <header th:replace = "~{global/header.html}"></header>
+    <main>
+        <form id="mailbox_form" th:action="@{/add}" method="post" th:object="${mailbox}">
+            <div class="box">
+                <div class="error">
+                    <div th:if="${#fields.hasErrors('host')}" th:each="e : ${#fields.errors('host')}" th:text="${e}">
+                    </div>
+                </div>
+                <div class="in">
+                    <span>
+                        e-mail server
+                    </span>
+                    :
+                    <label>
+                        <input type="text" th:field="*{host}">
+                    </label>
+                </div>
+            </div>
+            <div class="box">
+                <div class="error">
+                    <div th:if="${#fields.hasErrors('smtpHost')}" th:each="e : ${#fields.errors('smtpHost')}" th:text="${e}">
+                    </div>
+                </div>
+                <div class="in">
+                    <span>
+                        smtp server
+                    </span>
+                    :
+                    <label>
+                        <input type="text" th:field="*{smtpHost}">
+                    </label>
+                </div>
+            </div>
+            <div class="box">
+                <div class="error">
+                    <div th:if="${#fields.hasErrors('imapHost')}" th:each="e : ${#fields.errors('imapHost')}" th:text="${e}">
+                    </div>
+                </div>
+                <div class="in">
+                    <span>
+                        imap server
+                    </span>
+                    :
+                    <label>
+                        <input type="text" th:field="*{imapHost}">
+                    </label>
+                </div>
+            </div>
+            <div class="box">
+                <div class="error">
+                    <div th:if="${#fields.hasErrors('username')}" th:each="e : ${#fields.errors('username')}" th:text="${e}">
+                    </div>
+                </div>
+                <div class="in">
+                    <span>
+                        username
+                    </span>
+                    :
+                    <label>
+                        <input type="text" th:field="*{username}">
+                    </label>
+                </div>
+            </div>
+            <div class="box">
+                <div class="error">
+                    <div>
+                        <div th:if="${#fields.hasErrors('password')}" th:each="e : ${#fields.errors('password')}" th:text="${e}">
+                        </div>
+                    </div>
+                </div>
+                <div class="in">
+                    <span>
+                        password
+                    </span>
+                    :
+                    <label>
+                        <input type="text" th:field="*{password}">
+                    </label>
+                </div>
+            </div>
+            <div class="box">
+            </div>
+            <div class="box">
+                <button id="mailbox_submit" type="submit" onclick="notice()">提交</button>
+            </div>
+        </form>
+    </main>
+    <footer th:replace = "~{global/footer.html}"></footer>
+</body>
+</html>

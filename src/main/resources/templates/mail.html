@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang = "en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset = "UTF-8">
+    <title>home</title>
+    <link type="text/css" rel="stylesheet" th:href="@{css/global/global.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{css/mail.css}">
+</head>
+<body>
+    <div id="view">
+        <div id="headers">
+            <div class="list">
+                <span class="list_name">From</span>:
+                <span class="list_address">
+                    <span th:each="o : ${mail.from}" class="address" th:text="${o}"></span>
+                    <span th:if="${mail.from.isEmpty()}" class="none">(无)</span>
+                </span>
+            </div>
+            <div class="list">
+                <span class="list_name">Reply to</span>:
+                <span class="list_address">
+                    <span th:each="o : ${mail.replyTo}" class="address" th:text="${o}"></span>
+                    <span th:if="${mail.replyTo.isEmpty()}" class="none">(无)</span>
+                </span>
+            </div>
+            <div class="list">
+                <span class="list_name">To</span>:
+                <span class="list_address">
+                    <span th:each="o : ${mail.to}" class="address" th:text="${o}"></span>
+                    <span th:if="${mail.to.isEmpty()}" class="none">(无)</span>
+                </span>
+            </div>
+            <div class="list">
+                <span class="list_name">Cc</span>:
+                <span class="list_address">
+                    <span th:each="o : ${mail.cc}" class="address" th:text="${o}"></span>
+                    <span th:if="${mail.cc.isEmpty()}" class="none">(无)</span>
+                </span>
+            </div>
+            <div class="list">
+                <span class="list_name">Bcc</span>:
+                <span class="list_address">
+                    <span th:each="o : ${mail.bcc}" class="address" th:text="${o}"></span>
+                    <span th:if="${mail.bcc.isEmpty()}" class="none">(无)</span>
+                </span>
+            </div>
+        </div>
+        <div id="current_mail_text">
+            <iframe id="frame" th:src="@{/mail-text(id=${mail.getId()})}" allowtransparency="true"></iframe>
+        </div>
+        <div id="date">
+            <span>
+                发送于:
+            </span>
+            <span th:text="${mail.sentDate}">
+            </span>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active:
+      - prod
+  application:
+    name: e-mail-master
+  sql:
+    init:
+      mode: always
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:data.db
+  jmx:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+e-mail-master:
+  cache-dir: ./cache
